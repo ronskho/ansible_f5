@@ -4,6 +4,7 @@
     server: "{{ inventory_hostname }}"
     user: "{{ username }}"
     password: "{{ password }}"
+    partition: "{{ partition }}"
     name: "{{ name }}"
     all_rules:
       - "{{ all_rules }}"
