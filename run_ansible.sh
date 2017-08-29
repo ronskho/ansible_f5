@@ -30,7 +30,12 @@ while test $# -gt 0; do
                         ansible-playbook playbooks/operations.yml --ask-vault-pass -e @password.yml -e state="present" -vvv 
                         shift
                         ;;
-                -m)
+                -mon)
+                        ansible-playbook playbooks/maintenance.yml --ask-vault-pass -e @password.yml -e state="present" -vvv 
+                        shift
+                        ;;                        
+
+                -moff)
                         ansible-playbook playbooks/maintenance.yml --ask-vault-pass -e @password.yml -e state="present" -vvv 
                         shift
                         ;;                        
