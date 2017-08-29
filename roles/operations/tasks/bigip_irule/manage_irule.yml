@@ -6,7 +6,7 @@
     password: "{{ password }}"
     server: "{{ inventory_hostname }}"
     module: "ltm"
-    content: "{{ lookup('file', 'irules/bodgeit-rewrite.tcl') }}"
+    content: "{{ lookup('file', 'irules/ansible-demo-rewrite.tcl') }}"
     validate_certs: "false"
     state: "{{ state }}"
   delegate_to: localhost
