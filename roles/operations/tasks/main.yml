@@ -2,25 +2,57 @@
 ############
 #Add objects
 ############
-- include: bigip_node/add_node.yml 
-  vars: 
-    - host: "10.0.2.167" 
-    - name: "member1" 
-    - monitor: "/Common/icmp"
-  when: state == "present"
 
 - include: bigip_pool/manage_pool.yml 
   vars: 
-    - name: "pool1"
+    - name: "ansible_demo_pool"
     - monitor: "/Common/http_head_f5"
+  when: state == "present"
+
+- include: bigip_node/add_node.yml 
+  vars: 
+    - host: "10.128.20.11" 
+    - name: "ansible_demo_node_1" 
+    - monitor: "/Common/icmp"
   when: state == "present"
 
 - include: bigip_pool_member/manage_members.yml 
   vars: 
-    - host: "member1" 
-    - pool: "pool1"
-    - port: "8080"
+    - host: "ansible_demo_node_1" 
+    - pool: "ansible_demo_pool"
+    - port: "80"
   when: state == "present"
+
+
+- include: bigip_node/add_node.yml 
+  vars: 
+    - host: "10.128.20.12" 
+    - name: "ansible_demo_node_2" 
+    - monitor: "/Common/icmp"
+  when: state == "present"
+
+- include: bigip_pool_member/manage_members.yml 
+  vars: 
+    - host: "ansible_demo_node_2" 
+    - pool: "ansible_demo_pool"
+    - port: "80"
+  when: state == "present"
+
+
+- include: bigip_node/add_node.yml 
+  vars: 
+    - host: "10.128.20.13" 
+    - name: "ansible_demo_node_3" 
+    - monitor: "/Common/icmp"
+  when: state == "present"
+
+- include: bigip_pool_member/manage_members.yml 
+  vars: 
+    - host: "ansible_demo_node_3" 
+    - pool: "ansible_demo_pool"
+    - port: "80"
+  when: state == "present"
+
 
 - include: bigip_irule/manage_irule.yml
   when: state == "present"
@@ -33,14 +65,14 @@
 
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
-    - description: "foo-vip" 
-    - destination: "10.0.2.183" 
-    - name: "vip1" 
-    - pool: "pool1" 
+    - description: "ansible demo vip" 
+    - destination: "10.128.10.88" 
+    - name: "ansible_demo_vip" 
+    - pool: "ansible_demo_pool" 
     - port: "80" 
     - snat: "Automap"
     - all_profiles: "http"
-    - all_rules: "Bodgeit_Rewrite"
+    - all_rules: "ansible_demo_rewrite"
   when: state == "present"
 
 - include: bigip_iapp_template/appsvcs.yml
@@ -52,16 +84,16 @@
 ###############
 #Remove objects
 ###############
-- include: bigip_virtual_server/manage_vip.yml
+- include: bigip_virtual_server/manage_vip.yml 
   vars:
-    - description: "foo-vip" 
-    - destination: "10.0.2.183" 
-    - name: "vip1" 
-    - pool: "pool1" 
+    - description: "ansible demo vip" 
+    - destination: "10.128.10.88" 
+    - name: "ansible_demo_vip" 
+    - pool: "ansible_demo_pool" 
     - port: "80" 
     - snat: "Automap"
     - all_profiles: "http"
-    - all_rules: "Bodgeit_Rewrite"
+    - all_rules: "ansible_demo_rewrite"
   when: state == "absent"
 
 - include: bigip_irule/manage_irule.yml
@@ -75,13 +107,25 @@
 
 - include: bigip_pool/manage_pool.yml 
   vars: 
-    - name: "pool1" 
+    - name: "ansible_demo_pool" 
     - monitor: "/Common/http_head_f5"
   when: state == "absent"
 
 - include: bigip_node/remove_node.yml 
   vars:
-    - name: "member1" 
+    - name: "ansible_demo_node_1" 
+    - monitor: "/Common/icmp"
+  when: state == "absent"
+
+  - include: bigip_node/remove_node.yml 
+  vars:
+    - name: "ansible_demo_node_2" 
+    - monitor: "/Common/icmp"
+  when: state == "absent"
+
+  - include: bigip_node/remove_node.yml 
+  vars:
+    - name: "ansible_demo_node_3" 
     - monitor: "/Common/icmp"
   when: state == "absent"
 
