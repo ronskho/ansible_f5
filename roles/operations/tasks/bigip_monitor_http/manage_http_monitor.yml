@@ -1,7 +1,7 @@
 ---
 - name: Manage the HTTP Monitor
   bigip_monitor_http:
-    name: "my_http_monitor"
+    name: "ansible_demo_http_monitor"
     user: "{{ username }}"
     password: "{{ password }}"
     server: "{{ inventory_hostname }}"
