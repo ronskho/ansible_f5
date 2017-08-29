@@ -9,14 +9,4 @@
     - all_rules: "ansible_demo_rewrite"
   when: state == "present"
 
-
-###############
-#Remove objects
-###############
-- include: bigip_virtual_server/manage_vip.yml 
-  vars:
-    - name: "ansible_demo_vip" 
-    - all_rules: ""
-  when: state == "absent"
-
 ...
