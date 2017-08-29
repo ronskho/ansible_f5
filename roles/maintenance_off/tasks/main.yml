@@ -2,6 +2,6 @@
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
     - name: "ansible_demo_vip" 
-    - all_rules: "[]"
+    - all_rules: "null"
   when: state == "present"
 ...
