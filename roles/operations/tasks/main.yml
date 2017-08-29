@@ -72,7 +72,6 @@
     - port: "80" 
     - snat: "Automap"
     - all_profiles: "http"
-    - all_rules: "ansible_demo_rewrite"
   when: state == "present"
 
 
@@ -88,7 +87,6 @@
     - port: "80" 
     - snat: "Automap"
     - all_profiles: "http"
-    - all_rules: "ansible_demo_rewrite"
   when: state == "absent"
 
 - include: bigip_irule/manage_irule.yml
