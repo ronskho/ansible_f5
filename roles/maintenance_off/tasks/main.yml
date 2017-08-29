@@ -1,0 +1,12 @@
+---
+############
+#Modify objects
+############
+
+- include: bigip_virtual_server/manage_vip.yml 
+  vars:
+    - name: "ansible_demo_vip" 
+    - all_rules: {}
+  when: state == "present"
+
+...
