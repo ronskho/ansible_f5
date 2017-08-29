@@ -1,6 +1,7 @@
 ---
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
+    - partition: "Common"
     - name: "ansible_demo_vip" 
     - all_rules: ""
   when: state == "present"
