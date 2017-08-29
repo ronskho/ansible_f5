@@ -75,11 +75,6 @@
     - all_rules: "ansible_demo_rewrite"
   when: state == "present"
 
-- include: bigip_iapp_template/appsvcs.yml
-  when: state == "present"
-
-- include: bigip_iapp_service/appsvcs.yml
-  when: state == "present"
 
 ###############
 #Remove objects
@@ -129,9 +124,4 @@
     - monitor: "/Common/icmp"
   when: state == "absent"
 
-- include: bigip_iapp_service/appsvcs.yml
-  when: state == "absent"
-
-- include: bigip_iapp_template/appsvcs.yml
-  when: state == "absent"
 ...
