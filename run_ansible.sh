@@ -36,7 +36,7 @@ while test $# -gt 0; do
                         ;;                        
 
                 -moff)
-                        ansible-playbook playbooks/maintenance.yml --ask-vault-pass -e @password.yml -e state="present" -vvv 
+                        ansible-playbook playbooks/maintenance.yml --ask-vault-pass -e @password.yml -e state="absent" -vvv 
                         shift
                         ;;                        
                 -t)
