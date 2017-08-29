@@ -5,13 +5,7 @@
 
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
-    - description: "ansible demo vip" 
-    - destination: "10.128.10.88" 
     - name: "ansible_demo_vip" 
-    - pool: "ansible_demo_pool" 
-    - port: "80" 
-    - snat: "Automap"
-    - all_profiles: "http"
     - all_rules: "ansible_demo_rewrite"
   when: state == "present"
 
@@ -21,14 +15,8 @@
 ###############
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
-    - description: "ansible demo vip" 
-    - destination: "10.128.10.88" 
     - name: "ansible_demo_vip" 
-    - pool: "ansible_demo_pool" 
-    - port: "80" 
-    - snat: "Automap"
-    - all_profiles: "http"
     - all_rules: ""
-  when: state == "present"
+  when: state == "absent"
 
 ...
