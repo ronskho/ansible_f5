@@ -1,8 +1,13 @@
 ---
 - include: bigip_virtual_server/manage_vip.yml 
   vars:
-    - partition: "Common"
+    - description: "ansible demo vip" 
+    - destination: "10.128.10.88" 
     - name: "ansible_demo_vip" 
+    - pool: "ansible_demo_pool" 
+    - port: "80" 
+    - snat: "Automap"
+    - all_profiles: "http"
     - all_rules: ""
   when: state == "present"
 ...
