@@ -1,7 +1,7 @@
 ---
 - name: Manage the iRule contained in the static file bodgeit-rewrite.tcl to the LTM module
   bigip_irule:
-    name: "Bodgeit_Rewrite"
+    name: "ansible_demo_rewrite"
     user: "{{ username }}"
     password: "{{ password }}"
     server: "{{ inventory_hostname }}"
