@@ -23,7 +23,7 @@
     - port: "80"
   when: state == "present"
   
- - include: bigip_node/add_node.yml 
+- include: bigip_node/add_node.yml 
   vars: 
     - host: "10.128.20.12" 
     - name: "ansible_demo_node_2" 
@@ -94,7 +94,7 @@
     - monitor: "/Common/icmp"
   when: state == "absent"
   
- - include: bigip_node/remove_node.yml 
+- include: bigip_node/remove_node.yml 
   vars:
     - name: "ansible_demo_node_2" 
     - monitor: "/Common/icmp"
